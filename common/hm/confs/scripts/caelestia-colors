@@ -149,7 +149,8 @@ generate_starship_config() {
         # fmt_str+="[▓](fg:${surface} bg:${surface_variant})"
         fmt_str+="\$docker_context\$kubernetes\$nix_shell\$package"
         # fmt_str+="[▓](fg:${surface} bg:${surface_variant})"
-        fmt_str+="\$time(fg:${background})\n\$character"
+        fmt_str+="\$time(fg:${background})"
+        fmt_str+="[](fg:${background})\n\$character"
         
         printf 'format = """\n%s"""\n\n' "$fmt_str"
         
@@ -169,13 +170,13 @@ generate_starship_config() {
         # Git branch
         printf '[git_branch]\n'
         printf 'symbol = ""\n'
-        printf 'style = "bg:%s"\n' "$surface_variant"
-        printf 'format = '"'"'[[ $symbol $branch ](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$surface_variant"
+        printf 'style = "bg:%s"\n' "$background"
+        printf 'format = '"'"'[[ $symbol $branch ](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$background"
         
         # Git status
         printf '[git_status]\n'
-        printf 'style = "bg:%s"\n' "$surface_variant"
-        printf 'format = '"'"'[[($all_status$ahead_behind )](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$surface_variant"
+        printf 'style = "bg:%s"\n' "$background"
+        printf 'format = '"'"'[[($all_status$ahead_behind )](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$background"
         
         # Language modules
         local lang_style="bg:$surface"
@@ -213,18 +214,18 @@ generate_starship_config() {
         # DevOps/Tools
         printf '[docker_context]\n'
         printf 'symbol = "󰡨"\n'
-        printf 'style = "bg:%s"\n' "$surface_variant"
-        printf 'format = '"'"'[[ $symbol ($version) ](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$surface_variant"
+        printf 'style = "bg:%s"\n' "$background"
+        printf 'format = '"'"'[[ $symbol ($version) ](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$background"
         
         printf '[kubernetes]\n'
         printf 'symbol = "󰠱"\n'
-        printf 'style = "bg:%s"\n' "$surface_variant"
-        printf 'format = '"'"'[[ $symbol ($version) ](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$surface_variant"
+        printf 'style = "bg:%s"\n' "$background"
+        printf 'format = '"'"'[[ $symbol ($version) ](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$background"
         
         printf '[nix_shell]\n'
         printf 'symbol = ""\n'
-        printf 'style = "bg:%s"\n' "$surface_variant"
-        printf 'format = '"'"'[[ $symbol ($name) ](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$surface_variant"
+        printf 'style = "bg:%s"\n' "$background"
+        printf 'format = '"'"'[[ $symbol ($name) ](fg:%s bg:%s)]($style)'"'"'\n\n' "$primary" "$background"
         
         printf '[package]\n'
         printf 'symbol = "󰏖"\n'
