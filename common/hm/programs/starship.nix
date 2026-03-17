@@ -4,9 +4,7 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    settings = {
-      add_newline = true;
-      format = "$all";
-    };
   };
+
+  home.file.".config/starship.toml".source = ../confs/starship.toml;
 }

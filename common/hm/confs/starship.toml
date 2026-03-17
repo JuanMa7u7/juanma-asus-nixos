@@ -3,6 +3,9 @@
 add_newline = false
 continuation_prompt = "[▸▹ ](dimmed white)"
 
+# Performance optimizations
+scan_timeout = 30
+
 format = """($nix_shell$container$fill$git_metrics\n)$cmd_duration\
 $hostname\
 $localip\
@@ -305,12 +308,77 @@ format = " nim [$symbol($version )]($style)"
 
 [nix_shell]
 style = 'bold italic dimmed blue'
-symbol = '✶'
-format = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed white)'
-impure_msg = '[⌽](bold dimmed red)'
-pure_msg = '[⌾](bold dimmed green)'
-unknown_msg = '[◌](bold dimmed ellow)'
+symbol = '❄ '
+format = '[$symbol$state]($style) [$name](italic dimmed white)'
+impure_msg = '[⌽ impure](bold dimmed red)'
+pure_msg = '[⬡ pure](bold dimmed green)'
+unknown_msg = '[◌ unknown](bold dimmed yellow)'
+
+[direnv]
+format = "[$symbol $layout]($style)"
+symbol = "◉ "
+style = "bold bright-yellow"
+disabled = false
+
+[bun]
+format = " [bun](italic) [${symbol}${version}]($style)"
+symbol = "☻ "
+style = "bold bright-yellow"
+version_format = "${raw}"
+detect_files = ["bun.lockb", "bunfig.toml"]
 
 [spack]
 symbol = "◇ "
 format = " spack [$symbol$environment]($style)"
+disabled = true
+
+[cobol]
+disabled = true
+
+[daml]
+disabled = true
+
+[fennel]
+disabled = true
+
+[haxe]
+disabled = true
+
+[helm]
+disabled = true
+
+[opa]
+disabled = true
+
+[purescript]
+disabled = true
+
+[raku]
+disabled = true
+
+[rlang]
+disabled = true
+
+[red]
+disabled = true
+
+[solidity]
+disabled = true
+
+[vagrant]
+disabled = true
+
+[meson]
+disabled = true
+
+[guix_shell]
+disabled = true
+
+[openstack]
+disabled = true
+
+[azure]
+disabled = true
+
+[crystal]
+disabled = true
