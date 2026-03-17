@@ -17,6 +17,16 @@ in
       # Load Caelestia terminal colors if available
       cat ~/.local/state/caelestia/sequences.txt 2>/dev/null
 
+      # Sync Caelestia colors to Kitty, Hyprland, and Starship
+      if [ -f "$HOME/.local/bin/caelestia-colors" ]; then
+        eval "$($HOME/.local/bin/caelestia-colors 2>/dev/null)" || true
+      fi
+
+      # Use dynamic Starship config if it exists
+      if [ -f "$HOME/.config/starship-dynamic.toml" ]; then
+        export STARSHIP_CONFIG="$HOME/.config/starship-dynamic.toml"
+      fi
+
       # Helpful aliases
       alias c='clear' # clear terminal
       alias l='eza -lh --icons=auto' # long list

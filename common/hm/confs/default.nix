@@ -35,6 +35,11 @@
       recursive = true;
     };
 
+    ".local/bin/caelestia-colors" = {
+      source = ./scripts/caelestia-colors;
+      executable = true;
+    };
+
     ".config/hypr/userprefs.conf" = lib.mkForce {
       text = ''
         exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1
