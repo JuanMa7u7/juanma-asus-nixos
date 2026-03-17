@@ -60,6 +60,7 @@ let
     gparted-full
     nvidia-container-toolkit
     nvidia-docker
+    blender
     # v4l2loopback
   ];
 
@@ -71,58 +72,14 @@ let
   ];
 in
 {
+  imports = [
+    ./mime.nix
+  ];
+
   home.packages = stablePkgs ++ edgePkgs ++ lockedPkgs ++ [
     inputs.zen-browser.packages."${system}".beta
     (lib.hiPrio gpartedWrapper)
   ];
-
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "x-scheme-handler/http" = "zen-beta.desktop";
-      "x-scheme-handler/https" = "zen-beta.desktop";
-      "x-scheme-handler/chrome" = "zen-beta.desktop";
-      "text/html" = "zen-beta.desktop";
-      "application/x-extension-htm" = "zen-beta.desktop";
-      "application/x-extension-html" = "zen-beta.desktop";
-      "application/x-extension-shtml" = "zen-beta.desktop";
-      "application/xhtml+xml" = "zen-beta.desktop";
-      "application/x-extension-xhtml" = "zen-beta.desktop";
-      "application/x-extension-xht" = "zen-beta.desktop";
-
-      "image/jpeg" = [ "image-roll.desktop" ];
-      "image/jpg" = [ "image-roll.desktop" ];
-      "image/png" = [ "image-roll.desktop" ];
-      "image/gif" = [ "image-roll.desktop" ];
-      "image/bmp" = [ "image-roll.desktop" ];
-      "image/tiff" = [ "image-roll.desktop" ];
-      "image/x-bmp" = [ "image-roll.desktop" ];
-      "image/x-ico" = [ "image-roll.desktop" ];
-      "image/x-png" = [ "image-roll.desktop" ];
-      "image/x-tga" = [ "image-roll.desktop" ];
-      "image/x-tiff" = [ "image-roll.desktop" ];
-      "image/x-webp" = [ "image-roll.desktop" ];
-      "image/webp" = [ "image-roll.desktop" ];
-      "image/svg+xml" = [ "image-roll.desktop" ];
-      
-      "application/javascript" = "code.desktop";
-      "application/json" = "code.desktop";
-      "application/x-shellscript" = "code.desktop";
-      "application/xml" = "code.desktop";
-      "inode/directory" = "org.kde.dolphin.desktop";
-      "text/css" = "code.desktop";
-      "text/markdown" = "code.desktop";
-      "text/plain" = "code.desktop";
-      "text/x-c++src" = "code.desktop";
-      "text/x-csrc" = "code.desktop";
-      "text/x-go" = "code.desktop";
-      "text/x-java-source" = "code.desktop";
-      "text/x-python" = "code.desktop";
-      "text/x-typescript" = "code.desktop";
-      "x-scheme-handler/about" = "org.kde.dolphin.desktop";
-      "x-scheme-handler/file" = "org.kde.dolphin.desktop";
-    };
-  };
 
   xdg.desktopEntries.gparted = {
     name = "GParted";
