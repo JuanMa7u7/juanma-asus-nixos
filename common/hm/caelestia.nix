@@ -14,7 +14,7 @@ in
   };
   settings = {
     appearance = {
-      anim.durations.scale = 0.3;
+      anim.durations.scale = 1.5;
       font = {
         family = {
           clock = "Rubik";
@@ -37,7 +37,7 @@ in
       apps = {
         terminal = ["kitty"];
         audio = ["pavucontrol"];
-        playback = ["mpv"];
+        playback = ["mpc-qt"];
         explorer = ["dolphin"];
       };
       battery = {
@@ -183,8 +183,8 @@ in
         { name = "Sleep"; icon = "bedtime"; description = "Suspend then hibernate"; command = ["systemctl" "suspend-then-hibernate"]; enabled = true; dangerous = false; }
       ] ++ lib.optionals isThinkpad [
         { name = "Connect mamalona"; icon = "computer"; description = "SSH to mamalona"; command = ["kitty" "zsh" "-lc" "ssh juan_ma7u7@mamalona"]; enabled = true; dangerous = false; }
-        { name = "Enable homerow"; icon = "shift_lock"; description = "Enable homerows"; command = ["systemctl" "start" "kanata-main.service"]; enabled = true; dangerous = false; }
-        { name = "Disable homerow"; icon = "shift_lock_off"; description = "Disable homerows"; command = ["systemctl" "stop" "kanata-main.service"]; enabled = true; dangerous = false; }
+        # { name = "Enable homerow"; icon = "shift_lock"; description = "Enable homerows"; command = ["systemctl" "start" "kanata-main.service"]; enabled = true; dangerous = false; }
+        # { name = "Disable homerow"; icon = "shift_lock_off"; description = "Disable homerows"; command = ["systemctl" "stop" "kanata-main.service"]; enabled = true; dangerous = false; }
       ] ++ lib.optionals isMamalona [
         { name = "Connect thinkpad"; icon = "computer"; description = "SSH to thinkpad-l15"; command = ["kitty" "zsh" "-lc" "ssh juan_ma7u7@thinkpad-l15"]; enabled = true; dangerous = false; }
       ] ++ [

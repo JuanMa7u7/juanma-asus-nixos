@@ -12,6 +12,7 @@ let
     miraclecast
     nwg-look
     vlc
+    mpc-qt
   ];
   edgePkgs = with pkgs-edge; [
   ];
