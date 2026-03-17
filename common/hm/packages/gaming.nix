@@ -18,6 +18,7 @@ let
     lsfg-vk
     piper
     libratbag
+    bottles
   ];
   edgePkgs = with pkgs-edge; [
   ];

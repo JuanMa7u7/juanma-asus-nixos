@@ -13,6 +13,9 @@ let
     nwg-look
     vlc
     mpc-qt
+    obs-studio
+    sunvox
+    image-roll
   ];
   edgePkgs = with pkgs-edge; [
   ];
