@@ -49,8 +49,8 @@
   services.udev.extraRules = ''
     SUBSYSTEM=="video4linux", ATTR{name}=="BluCast Virtual Camera", MODE="0666", TAG+="uaccess"
   '';
-
-  virtualisation.docker = {
-    enableNvidia = true;
+  
+  hardware.nvidia-container-toolkit = {
+    enable = true;
   };
 }
