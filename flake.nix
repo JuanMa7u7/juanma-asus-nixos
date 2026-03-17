@@ -7,7 +7,7 @@
     hydenix.url = "github:richen604/hydenix";
 
     caelestia-shell = {
-      url = "github:Razkaroth/caelestia-shell";
+      url = "github:JuanMa7u7/caelestia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
