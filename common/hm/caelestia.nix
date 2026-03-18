@@ -228,7 +228,7 @@ in
       mediaGif = "~/Pictures/Caelestia/media.gif";
       # sessionGif = "root:/assets/maid.gif";
       sessionGif = "~/Pictures/Caelestia/session.gif";
-      wallpaperDir = "~/Pictures/wallpaper";
+      wallpaperDir = "~/Pictures/Wallpapers";
       gifDuration = 2.8;
       beatsPerLoop = 8;
     };
