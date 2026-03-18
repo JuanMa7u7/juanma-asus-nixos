@@ -3,7 +3,7 @@ let
   stablePkgs = with pkgs; [
     cava
     (mpv.override { scripts = [ mpvScripts.mpris ]; })
-    helvum
+    crosspipe
     easyeffects
     qjackctl
     rtaudio

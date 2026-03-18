@@ -2,6 +2,7 @@
 {
   imports = [
     ./applications.nix
+    ./fonts.nix
     ./browsers.nix
     ./terminals.nix
     ./office.nix

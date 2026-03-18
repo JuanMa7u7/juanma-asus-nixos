@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    cmatrix
-    ipfetch
-    fastfetch
-    nyancat
+    nerd-fonts.caskaydia-cove
   ];
 }

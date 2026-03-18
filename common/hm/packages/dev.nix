@@ -9,7 +9,7 @@ let
     ngrok
     bootdev-cli
     lmstudio
-    n8n
+    # n8n
     aria2
     bat
     btop
@@ -53,7 +53,6 @@ let
     cmakeMinimal
     typescript
     eslint
-    neofetch
     dbeaver-bin
     go_1_26
     libgcc
