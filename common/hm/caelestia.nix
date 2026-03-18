@@ -14,7 +14,7 @@ in
   };
   settings = {
     appearance = {
-      anim.durations.scale = 1.5;
+      anim.durations.scale = 1;
       font = {
         family = {
           clock = "Rubik";
@@ -225,9 +225,9 @@ in
     };
     paths = {
       # mediaGif = "root:/assets/gojo.gif";
-      mediaGif = "~/Pictures/Caelestia/HALO-SPARTANS-DANCING.gif";
+      mediaGif = "~/Pictures/Caelestia/media.gif";
       # sessionGif = "root:/assets/maid.gif";
-      sessionGif = "~/Pictures/Caelestia/HALO-TEABAG.gif";
+      sessionGif = "~/Pictures/Caelestia/session.gif";
       wallpaperDir = "~/Pictures/wallpaper";
       gifDuration = 2.8;
       beatsPerLoop = 8;
