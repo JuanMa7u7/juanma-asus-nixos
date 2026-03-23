@@ -2,7 +2,7 @@
 let
   stablePkgs = with pkgs; [
     cava
-    (mpv.override { scripts = [ mpvScripts.mpris ]; })
+    # (mpv.override { scripts = [ mpvScripts.mpris ]; })
     crosspipe
     easyeffects
     qjackctl
@@ -11,7 +11,7 @@ let
     gnome-network-displays
     miraclecast
     nwg-look
-    vlc
+    # vlc
     mpc-qt
     obs-studio
     sunvox
