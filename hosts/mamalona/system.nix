@@ -2,14 +2,14 @@
 {
   fileSystems."/mnt/datos" = {
     device = "/dev/disk/by-uuid/968E1A158E19EE8D";
-    fsType = "ntfs3";
-    options = [ "rw" "uid=1000" "gid=100" "umask=022" "windows_names" ];
+    fsType = "ntfs-3g";
+    options = [ "nofail" "rw" "uid=1000" "gid=100" "umask=022" "windows_names" ];
   };
 
   fileSystems."/mnt/juegos-hdd" = {
     device = "/dev/disk/by-uuid/DE4AD9B24AD987A3";
-    fsType = "ntfs3";
-    options = [ "rw" "uid=1000" "gid=100" "umask=022" "windows_names" ];
+    fsType = "ntfs-3g";
+    options = [ "nofail" "rw" "uid=1000" "gid=100" "umask=022" "windows_names" ];
   };
 
   systemd.tmpfiles.rules = [
