@@ -11,6 +11,6 @@
     ./foot.nix
     ./starship.nix
     ./responsively.nix
-    ./curseforge.nix
+    # ./curseforge.nix
   ];
 }

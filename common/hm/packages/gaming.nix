@@ -19,6 +19,7 @@ let
     piper
     libratbag
     bottles
+    prismlauncher
   ];
   edgePkgs = with pkgs-edge; [
   ];
