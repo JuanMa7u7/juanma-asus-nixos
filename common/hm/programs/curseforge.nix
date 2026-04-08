@@ -93,5 +93,6 @@ in
       "Utility"
     ];
     startupNotify = true;
+    mimeType = [ "x-scheme-handler/cfauth" ];
   };
 }
