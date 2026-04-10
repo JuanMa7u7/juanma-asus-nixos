@@ -251,7 +251,7 @@ in
       enabled = true;
       vimKeybinds = true;
       commands = {
-        logout = ["systemctl" "--user" "exit"];
+        logout = ["hyprctl" "dispatch" "exit"];
         shutdown = ["systemctl" "poweroff"];
         hibernate = ["systemctl" "hibernate"];
         reboot = ["systemctl" "reboot"];
