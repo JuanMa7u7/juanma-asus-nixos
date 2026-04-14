@@ -79,11 +79,11 @@
         "quickshell": "quickshell_2"
       },
       "locked": {
-        "lastModified": 1776138502,
-        "narHash": "sha256-MAM9+/X4dbEcOu1/RJ4k6YHLBuoPNrlAMMJ/RZI+jDs=",
+        "lastModified": 1776140245,
+        "narHash": "sha256-EsxR5KRr/awx7VEZYFAuLmfft5xn7B9ZLdqUhjypA4c=",
         "owner": "JuanMa7u7",
         "repo": "caelestia-shell",
-        "rev": "ee625a96e463d6868a2dbe660847addff71a702d",
+        "rev": "ba43f0c7d06f76bd8bb30d80ea8c6269b89555df",
         "type": "github"
       },
       "original": {
