@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [ ];
+  imports = [ ./openrgb.nix ];
 
   services.flatpak.enable = true;
 
@@ -22,4 +22,6 @@
     docker-compose
     tailscale
   ];
+
+  openrgb.enable = true;
 }
