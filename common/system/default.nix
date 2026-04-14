@@ -2,6 +2,8 @@
 {
   imports = [ ];
 
+  services.flatpak.enable = true;
+
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   security.polkit.enable = true;
 

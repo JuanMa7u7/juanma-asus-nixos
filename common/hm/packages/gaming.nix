@@ -1,4 +1,4 @@
-{ pkgs, pkgs-edge, ... }:
+{ pkgs, pkgs-edge, inputs, ... }:
 let
   stablePkgs = with pkgs; [
     gamemode
@@ -20,6 +20,7 @@ let
     libratbag
     bottles
     prismlauncher
+    inputs.trinity-launcher.packages.${pkgs.system}.default
   ];
   edgePkgs = with pkgs-edge; [
   ];

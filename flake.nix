@@ -24,6 +24,9 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixarr.url = "github:rasmus-kirk/nixarr";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    # Launcher for Minecraft Bedrock Edition (Codeberg)
+    trinity-launcher.url = "git+https://codeberg.org/javiercplus/Trinity-Launcher-NIXOS";
   };
 
   outputs = inputs:
