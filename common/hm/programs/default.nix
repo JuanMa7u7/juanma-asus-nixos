@@ -12,5 +12,6 @@
     ./starship.nix
     ./responsively.nix
     # ./curseforge.nix
+    ./duckstation.nix
   ];
 }
