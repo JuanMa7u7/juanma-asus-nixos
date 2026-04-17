@@ -33,14 +33,21 @@ let
       mainProgram = pname;
     };
   };
+
+  wrapper = pkgs.writeShellScriptBin "duckstation-wrapper" ''
+    export QT_QPA_PLATFORM=xcb
+    export SDL_VIDEODRIVER=x11
+    export DSM_USEGAMEPATH=0
+    exec ${duckstation}/bin/duckstation "$@"
+  '';
 in
 {
-  home.packages = [ duckstation ];
+  home.packages = [ duckstation wrapper ];
 
   xdg.desktopEntries.duckstation = {
     name = "DuckStation";
     comment = "PS1 Emulator";
-    exec = "${lib.getExe duckstation}";
+    exec = "${wrapper}/bin/duckstation-wrapper";
     icon = "duckstation";
     terminal = false;
     type = "Application";
