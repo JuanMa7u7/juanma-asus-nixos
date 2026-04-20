@@ -13,5 +13,6 @@
     ./responsively.nix
     # ./curseforge.nix
     ./duckstation.nix
+    ./shadps4.nix
   ];
 }

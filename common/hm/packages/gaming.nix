@@ -23,7 +23,7 @@ let
     dolphin-emu
     pcsx2
     rpcs3
-    shadps4
+    # shadps4
     inputs.trinity-launcher.packages.${pkgs.system}.default
   ];
   edgePkgs = with pkgs-edge; [
