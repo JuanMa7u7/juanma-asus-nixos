@@ -25,6 +25,8 @@ let
     rpcs3
     # shadps4
     inputs.trinity-launcher.packages.${pkgs.system}.default
+    lsfg-vk
+    lsfg-vk-ui
   ];
   edgePkgs = with pkgs-edge; [
   ];
