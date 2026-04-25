@@ -146,12 +146,12 @@ in
         perMonitorWorkspaces = true;
         showWindows = true;
         shown = 5;
-        specialWorkspaceIcons = [
-          {
-            name = "steam";
-            icon = "sports_esports";
-          }
-        ];
+        # specialWorkspaceIcons = [
+        #   {
+        #     name = "steam";
+        #     icon = "sports_esports";
+        #   }
+        # ];
       };
     };
     border = {
