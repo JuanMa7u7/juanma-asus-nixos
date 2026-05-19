@@ -14,5 +14,7 @@
     # ./curseforge.nix
     ./duckstation.nix
     ./shadps4.nix
+    ./affinity.nix
+    ./pencil.nix
   ];
 }
