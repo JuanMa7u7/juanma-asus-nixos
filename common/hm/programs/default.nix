@@ -16,5 +16,6 @@
     ./shadps4.nix
     ./affinity.nix
     ./pencil.nix
+    ./luban.nix
   ];
 }
