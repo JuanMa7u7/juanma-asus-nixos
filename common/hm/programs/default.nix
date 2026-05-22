@@ -17,5 +17,6 @@
     ./affinity.nix
     ./pencil.nix
     ./luban.nix
+    ./real-video-enhancer.nix
   ];
 }
