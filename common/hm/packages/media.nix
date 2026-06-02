@@ -17,6 +17,7 @@ let
     sunvox
     image-roll
     video-downloader
+    gpu-screen-recorder
   ];
   edgePkgs = with pkgs-edge; [
   ];
