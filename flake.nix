@@ -45,7 +45,10 @@
 
           pkgs = import inputs.nixpkgs {
             inherit system;
-            config.allowUnfree = true;
+            config = {
+              allowUnfree = true;
+              permittedInsecurePackages = [ "nodejs-20" ];
+            };
             overlays = [ inputs.hydenix.overlays.default ];
           };
 
