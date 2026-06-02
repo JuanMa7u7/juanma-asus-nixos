@@ -1,6 +1,15 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [ ./system.nix ];
+
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      libva-vdpau-driver
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
+  };
 
   programs.steam = {
     enable = true;
