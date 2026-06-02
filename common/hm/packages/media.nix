@@ -16,6 +16,7 @@ let
     obs-studio
     sunvox
     image-roll
+    video-downloader
   ];
   edgePkgs = with pkgs-edge; [
   ];
