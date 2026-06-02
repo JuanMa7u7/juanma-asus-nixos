@@ -3,7 +3,7 @@ let
   stablePkgs = with pkgs; [
     yazi
     eza
-    wasistlos
+    karere
     kdePackages.kalarm
     kdePackages.networkmanager-qt
   ];
