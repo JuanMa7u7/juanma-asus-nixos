@@ -59,7 +59,7 @@ let
     nodejs_20
     openssl
     opencode
-    pnpm_9
+    pnpm_10
     prisma
     prisma-engines
     turbo
