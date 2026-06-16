@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  imports = [ ./system.nix ];
+  # imports = [ ./system.nix ];
 
   hardware.graphics.enable = true;
   hardware.opengl = {
@@ -8,7 +8,6 @@
     extraPackages = with pkgs; [
       libva-vdpau-driver
       libvdpau-va-gl
-      amdvlk
     ];
   };
 
