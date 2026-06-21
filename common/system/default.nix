@@ -11,6 +11,10 @@
     gvfs.enable = true;
     udisks2.enable = true;
     tailscale.enable = true;
+    printing = {
+      enable = true;
+      drivers = with pkgs; [ gutenprint ];
+    };
   };
 
   virtualisation.docker = {
@@ -21,6 +25,7 @@
   environment.systemPackages = with pkgs; [
     docker-compose
     tailscale
+    system-config-printer
   ];
 
   openrgb.enable = true;
