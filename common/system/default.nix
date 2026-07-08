@@ -26,7 +26,11 @@
     docker-compose
     tailscale
     system-config-printer
+    icu
   ];
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ icu ];
 
   openrgb.enable = true;
 }
