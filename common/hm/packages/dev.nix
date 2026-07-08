@@ -67,6 +67,7 @@ let
     vscode
     flutter
     direnv
+    beekeeper-studio
   ];
   edgePkgs = with pkgs-edge; [
     github-cli
