@@ -18,7 +18,7 @@ let
     lsfg-vk
     piper
     libratbag
-    bottles
+    # bottles  # temporarily disabled - patool test issue
     prismlauncher
     dolphin-emu
     pcsx2

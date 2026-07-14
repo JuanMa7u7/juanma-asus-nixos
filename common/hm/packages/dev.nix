@@ -38,7 +38,7 @@ let
     uutils-coreutils-noprefix
     sqlite
     sqlitebrowser
-    mongodb-compass
+    # mongodb-compass  # temporarily disabled - nixpkgs issue
     mongodb-tools
     # nodejs
     gjs

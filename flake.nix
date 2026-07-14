@@ -5,6 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     hydenix.url = "github:richen604/hydenix";
+    hydenix.inputs.home-manager.follows = "home-manager";
+
+    home-manager.url = "github:nix-community/home-manager";
 
     caelestia-shell = {
       url = "github:JuanMa7u7/caelestia-shell";
@@ -49,7 +52,9 @@
               allowUnfree = true;
               permittedInsecurePackages = [ "nodejs-20.20.2" "nodejs-slim-20.20.2" ];
             };
-            overlays = [ inputs.hydenix.overlays.default ];
+            overlays = [
+              inputs.hydenix.overlays.default
+            ];
           };
 
           specialArgs = {

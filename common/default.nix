@@ -10,7 +10,7 @@ in
   networking.hostName = hostName;
 
   imports = [
-    inputs.hydenix.inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
     inputs.hydenix.nixosModules.default
     ./system
   ];
