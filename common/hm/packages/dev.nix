@@ -67,6 +67,7 @@ let
     vscode
     flutter
     direnv
+    tabularis
   ];
   edgePkgs = with pkgs-edge; [
     github-cli
