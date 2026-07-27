@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Capturamos las variables de estado que envía Libvirt
+VM_NAME="$1"
+ACTION="$2"
+PHASE="$3"
+
+# Solo actuamos si es nuestra máquina virtual de juegos y ya terminó de cerrarse
+if [ "$VM_NAME" = "win11-vm1-singlegpu" ] && [ "$ACTION" = "stopped" ] && [ "$PHASE" = "end" ]; then
+    
+    # Esperamos 2 segundos a que los discos .qcow2 guarden caché y se cierren bien
+    sleep 2
+    
+    # Diagnóstico: Si Windows mandó señal de reinicio, Libvirt activa el preStop anterior
+    if [ -f /tmp/vm_reboot_flag ]; then
+        rm -f /tmp/vm_reboot_flag
+        # Forzamos el reinicio completo de la computadora física usando el binario real de NixOS
+        /run/current-system/sw/bin/systemctl reboot
+    else
+        # Si no hay bandera de reinicio, asumimos apagado total de la computadora física
+        /run/current-system/sw/bin/systemctl poweroff
+    fi
+fi

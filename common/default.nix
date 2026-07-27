@@ -1,4 +1,4 @@
-{ inputs, hostName, pkgs, ... }:
+{ inputs, hostName, pkgs, lib, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
   pkgsEdge = import inputs.nixpkgs {
@@ -8,6 +8,10 @@ let
 in
 {
   networking.hostName = hostName;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 5900 5901 ];
+  };
 
   imports = [
     inputs.home-manager.nixosModules.home-manager

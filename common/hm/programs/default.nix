@@ -15,7 +15,7 @@
     ./duckstation.nix
     ./shadps4.nix
     ./affinity.nix
-    ./pencil.nix
+    # ./pencil.nix  # TEMPORARILY DISABLED — hash mismatch on AppImage
     ./luban.nix
     ./real-video-enhancer.nix
   ];
