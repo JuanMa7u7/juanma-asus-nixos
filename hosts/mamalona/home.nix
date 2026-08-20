@@ -1,8 +1,13 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [];
 
   home.stateVersion = "25.05";
+
+  home.packages = with pkgs; [
+    nvidia-container-toolkit
+    nvidia-docker
+  ];
 
   services.blucast.enable = true;
   services.sc0710-audio.enable = true;

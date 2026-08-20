@@ -40,6 +40,8 @@
       executable = true;
     };
 
+    "Pictures/Wallpapers".source = ./caelestia/wallpapers;
+
     ".config/hypr/userprefs.conf" = lib.mkForce {
       text = ''
         exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1

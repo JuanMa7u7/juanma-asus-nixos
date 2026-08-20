@@ -2,6 +2,8 @@
 {
   # imports = [ ./system.nix ];
 
+  boot.loader.grub.devices = [ "/dev/sda" ];
+
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [

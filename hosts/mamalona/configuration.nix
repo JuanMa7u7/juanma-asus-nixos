@@ -2,6 +2,8 @@
 {
   imports = [ ./system.nix ./vfio.nix ./virt.nix ];
 
+  boot.loader.grub.devices = [ "/dev/sda" ];
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
