@@ -4,9 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    hydenix.url = "github:richen604/hydenix";
-    hydenix.inputs.home-manager.follows = "home-manager";
-
     home-manager.url = "github:nix-community/home-manager";
 
     caelestia-shell = {
@@ -30,6 +27,9 @@
 
     # Launcher for Minecraft Bedrock Edition (Codeberg)
     trinity-launcher.url = "git+https://codeberg.org/javiercplus/Trinity-Launcher-NIXOS";
+
+    # Elgato 4K60 Pro capture card driver
+    sc0710.url = "github:Nakildias/sc0710";
   };
 
   outputs = inputs:
@@ -46,16 +46,14 @@
         lib.nixosSystem {
           inherit system;
 
-          pkgs = import inputs.nixpkgs {
-            inherit system;
-            config = {
-              allowUnfree = true;
-              permittedInsecurePackages = [ "nodejs-20.20.2" "nodejs-slim-20.20.2" ];
-            };
-            overlays = [
-              inputs.hydenix.overlays.default
-            ];
-          };
+           pkgs = import inputs.nixpkgs {
+             inherit system;
+             config = {
+               allowUnfree = true;
+                permittedInsecurePackages = [ "nodejs-22.12.0" "nodejs-slim-22.12.0" ];
+             };
+              overlays = [ ];
+           };
 
           specialArgs = {
             inherit hostName inputs;
@@ -76,18 +74,19 @@
         thinkpad-l15 = mkHost {
           hostName = "thinkpad-l15";
           hardwareModules = [
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-cpu-amd
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc-ssd
+            inputs.nixos-hardware.nixosModules.common-cpu-amd
+            inputs.nixos-hardware.nixosModules.common-pc
+            inputs.nixos-hardware.nixosModules.common-pc-ssd
           ];
         };
 
         mamalona = mkHost {
           hostName = "mamalona";
           hardwareModules = [
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-pc-ssd
-            inputs.hydenix.inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+            inputs.nixos-hardware.nixosModules.common-pc
+            inputs.nixos-hardware.nixosModules.common-pc-ssd
+            inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+            inputs.sc0710.nixosModules.default
           ];
         };
       };

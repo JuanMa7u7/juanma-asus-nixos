@@ -1,16 +1,33 @@
 <domain type='kvm'>
   <name>win11-vm1-singlegpu</name>
-  <memory unit='KiB'>16777216</memory>
-  <currentMemory unit='KiB'>16777216</currentMemory>
+  <memory unit='KiB'>25165824</memory>
+  <currentMemory unit='KiB'>25165824</currentMemory>
   <memoryBacking>
     <locked/>
     <hugepages/>
   </memoryBacking>
-  <vcpu placement='static'>6</vcpu>
+  <vcpu placement='static'>14</vcpu>
+  <cputune>
+    <vcpupin vcpu='0' cpuset='2'/>
+    <vcpupin vcpu='1' cpuset='3'/>
+    <vcpupin vcpu='2' cpuset='4'/>
+    <vcpupin vcpu='3' cpuset='5'/>
+    <vcpupin vcpu='4' cpuset='6'/>
+    <vcpupin vcpu='5' cpuset='7'/>
+    <vcpupin vcpu='6' cpuset='8'/>
+    <vcpupin vcpu='7' cpuset='9'/>
+    <vcpupin vcpu='8' cpuset='10'/>
+    <vcpupin vcpu='9' cpuset='11'/>
+    <vcpupin vcpu='10' cpuset='12'/>
+    <vcpupin vcpu='11' cpuset='13'/>
+    <vcpupin vcpu='12' cpuset='14'/>
+    <vcpupin vcpu='13' cpuset='15'/>
+    <emulatorpin cpuset='0-1'/>
+  </cputune>
   <os>
     <type arch='x86_64' machine='pc-q35-11.0'>hvm</type>
-    <loader readonly='yes' type='pflash'>/nix/store/v3av2zl6x4qw6byglwh7wj943jgfi0si-OVMF-202605-fd/FV/OVMF_CODE.fd</loader>
-    <nvram template='/nix/store/v3av2zl6x4qw6byglwh7wj943jgfi0si-OVMF-202605-fd/FV/OVMF_VARS.fd'>/var/lib/libvirt/qemu/nvram/win11-vm1-singlegpu_VARS.fd</nvram>
+    <loader readonly='yes' type='pflash'>/nix/store/h6dhf64hz137g265n1v233jj78s73nqa-qemu-host-cpu-only-11.0.1/share/qemu/edk2-x86_64-code.fd</loader>
+    <nvram template='/nix/store/h6dhf64hz137g265n1v233jj78s73nqa-qemu-host-cpu-only-11.0.1/share/qemu/edk2-i386-vars.fd'>/var/lib/libvirt/qemu/nvram/win11-vm1-singlegpu_VARS.fd</nvram>
   </os>
   <features>
     <acpi/>
@@ -27,7 +44,10 @@
     <vmport state='off'/>
     <smm state='on'/>
   </features>
-  <cpu mode='host-passthrough' check='none'/>
+  <cpu mode='host-passthrough' check='none' migratable='on'>
+    <topology sockets='1' dies='1' cores='7' threads='2'/>
+    <cache mode='passthrough'/>
+  </cpu>
   <clock offset='localtime'>
     <timer name='rtc' tickpolicy='catchup'/>
     <timer name='pit' tickpolicy='delay'/>
@@ -73,6 +93,9 @@
     <input type='evdev'>
       <source dev='/dev/input/by-id/usb-8BitDo_Retro_R8_Mouse_8BitDo_Retro_R8_Mouse_421511610813000001-event-mouse'/>
     </input>
+    <controller type='usb' index='1' model='qemu-xhci' ports='15'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
+    </controller>
     <memballoon model='none'/>
   </devices>
 </domain>

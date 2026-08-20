@@ -43,6 +43,14 @@
     sync.enable = lib.mkForce false;
   };
 
+  networking = {
+    firewall = {
+      enable = true;
+      # SOLUCIÓN DE RED: Permitir todo el tráfico interno de la VM sin restricciones de puertos
+      trustedInterfaces = [ "virbr0" ];
+    };
+  };
+
   # Steam/Proton 32-bit — now merged into hardware.graphics above
 
   # ═══════════════════════════════════════════════════════════════
@@ -51,26 +59,22 @@
   specialisation."Windows-Gaming-VM".configuration = {
     system.nixos.tags = [ "VFIO-Windows" ];
     
-    # 1. ANULACIÓN DE INTERFAZ GRÁFICA COMPLETA
-    services.displayManager.sddm.enable = lib.mkForce false; # <-- APAGA EL MÓDULO ANTES DE LA ASERCIÓN
+    services.displayManager.sddm.enable = lib.mkForce false;
     services.displayManager.enable = lib.mkForce false;
     services.xserver.enable = lib.mkForce false;
     services.xserver.videoDrivers = lib.mkForce [ ];
     hardware.nvidia.modesetting.enable = lib.mkForce false;
+    virtualisation.spiceUSBRedirection.enable = true;
     
-    # FORZADO DE SOCKETS
     virtualisation.libvirtd.enable = lib.mkForce true;
     systemd.sockets.libvirtd.enable = lib.mkForce true;
     systemd.services.libvirtd.enable = lib.mkForce true;
 
-    # 2. Silenciar el pánico de aserción del toolkit de NVIDIA
     hardware.nvidia-container-toolkit.enable = lib.mkForce false;
     hardware.nvidia-container-toolkit.suppressNvidiaDriverAssertion = lib.mkForce true;
 
-    # 3. LISTA NEGRA ESTRICTA (Especial para hardware.nvidia.open = true)
     boot.blacklistedKernelModules = [ "nvidia" "nvidia_drm" "nvidia_modeset" "nvidia_uvm" "nouveau" ];
 
-    # Parámetros del kernel para secuestrar el hardware Ada Lovelace
     boot.kernelParams = [
       "amd_iommu=on"
       "iommu=pt"
@@ -80,23 +84,24 @@
       "vfio-pci.ids=10de:2703,10de:22bc"
       "video=efifb:off"
       "video=vesafb:off"
+      "hugepagesz=2M"
+      "hugepages=12288" # Esto solo se activará cuando elijas el perfil de Windows en el GRUB
     ];
 
-    # Forzar la carga de VFIO en el arranque temprano
     boot.initrd.kernelModules = [ "vfio" "vfio_iommu_type1" "vfio-pci" ];
 
-    # Servicio de auto-arranque avanzado (Sintaxis Maestra de Rutas y Comillas Corregida)
+    # Servicio de auto-arranque avanzado con bloqueo de drivers USB nativos
     systemd.services.auto-start-windows-vm = {
       description = "Arrancar Windows 11 VM automaticamente en Modo Juego";
       wantedBy = [ "multi-user.target" ];
-      after = [ "libvirtd.service" "allocate-hugepages.service" ];
+      after = [ "libvirtd.service" ];
       requires = [ "libvirtd.service" ];
       
       serviceConfig = {
         Type = "oneshot";
-        # AUTOMATIZACIÓN MULTIMEDIA DEFINITIVA: Espera a que Windows cargue e inyecta Micro, Cámara y Audífonos
-        ExecStart = "${pkgs.bash}/bin/bash -c '${pkgs.libvirt}/bin/virsh -c qemu:///system?socket=/var/run/libvirt/libvirt-sock undefine win11-vm1-singlegpu --nvram 2>/dev/null; ${pkgs.libvirt}/bin/virsh -c qemu:///system?socket=/var/run/libvirt/libvirt-sock define ${./vm/win11-vm1-singlegpu/definition.xml} && ${pkgs.libvirt}/bin/virsh -c qemu:///system?socket=/var/run/libvirt/libvirt-sock net-start default 2>/dev/null; ${pkgs.libvirt}/bin/virsh -c qemu:///system?socket=/var/run/libvirt/libvirt-sock start win11-vm1-singlegpu && sleep 15 && echo \"<hostdev mode=\'subsystem\' type=\'usb\'><source><vendor id=\'0x0951\'/><product id=\'0x16df\'/></source></hostdev>\" | ${pkgs.libvirt}/bin/virsh -c qemu:///system?socket=/var/run/libvirt/libvirt-sock attach-device win11-vm1-singlegpu /dev/stdin && echo \"<hostdev mode=\'subsystem\' type=\'usb\'><source><vendor id=\'0x1532\'/><product id=\'0x0e03\'/></source></hostdev>\" | ${pkgs.libvirt}/bin/virsh -c qemu:///system?socket=/var/run/libvirt/libvirt-sock attach-device win11-vm1-singlegpu /dev/stdin && echo \"<hostdev mode=\'subsystem\' type=\'usb\'><source><vendor id=\'0x046d\'/><product id=\'0x0ab5\'/></source></hostdev>\" | ${pkgs.libvirt}/bin/virsh -c qemu:///system?socket=/var/run/libvirt/libvirt-sock attach-device win11-vm1-singlegpu /dev/stdin'";
-
+        RemainAfterExit = "yes";
+        # REMOVIDO SCREAM DE AQUÍ: El arranque ahora es puramente de Libvirt
+        ExecStart = "${pkgs.bash}/bin/bash -c 'sleep 5; ${pkgs.libvirt}/bin/virsh -c qemu:///system?socket=/var/run/libvirt/libvirt-sock net-start default 2>/dev/null; ${pkgs.libvirt}/bin/virsh -c qemu:///system?socket=/var/run/libvirt/libvirt-sock start win11-vm1-singlegpu'";
       };
     };
   };
@@ -108,14 +113,41 @@
     options v4l2loopback devices=1 video_nr=10 card_label="BluCast Virtual Camera" exclusive_caps=1 max_buffers=2 max_openers=10
   '';
 
+  # Elgato 4K60 Pro capture card driver (sc0710)
+  hardware.sc0710.enable = true;
+
   # Reglas de Udev unificadas en un solo bloque de texto plano de Nix
   services.udev.extraRules = ''
     SUBSYSTEM=="video4linux", ATTR{name}=="BluCast Virtual Camera", MODE="0666", TAG+="uaccess"
     SUBSYSTEM=="usb", ATTR{idVendor}=="0951", ATTR{idProduct}=="16df", MODE="0666", GROUP="libvirtd", TAG+="uaccess"
     SUBSYSTEM=="usb", ATTR{idVendor}=="1532", ATTR{idProduct}=="0e03", MODE="0666", GROUP="libvirtd", TAG+="uaccess"
+    
+    # Micrófono HyperX QuadCast (0951:16df)
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0951", ATTR{idProduct}=="16df", MODE="0666", GROUP="kvm"
+
+    # Audífonos Logitech G733 (046d:0ab5)
+    SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="0ab5", MODE="0666", GROUP="kvm"
+
+    # Cámara Razer Kiyo (1532:0e03)
+    SUBSYSTEM=="usb", ATTR{idVendor}=="1532", ATTR{idProduct}=="0e03", MODE="0666", GROUP="kvm"
+
+    # Antena Bluetooth MediaTek (0e8d:0608)
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0e8d", ATTR{idProduct}=="0608", MODE="0666", GROUP="kvm"
   '';
 
   hardware.nvidia-container-toolkit = {
     enable = true;
   };
+
+  security.sudo.extraRules = [
+    {
+      users = [ "juan_ma7u7" ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/systemctl reboot";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 }

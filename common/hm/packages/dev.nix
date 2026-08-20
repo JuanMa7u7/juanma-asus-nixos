@@ -56,7 +56,7 @@ let
     dbeaver-bin
     go_1_26
     libgcc
-    nodejs_20
+    nodejs_22
     openssl
     opencode
     pnpm_10

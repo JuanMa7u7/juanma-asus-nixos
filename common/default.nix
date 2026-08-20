@@ -15,7 +15,6 @@ in
 
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    inputs.hydenix.nixosModules.default
     ./system
   ];
 
@@ -80,34 +79,11 @@ in
 
     users."juan_ma7u7" = {
       imports = [
-        inputs.hydenix.homeModules.default
         ./hm
         ../hosts/${hostName}/home.nix
         ../hosts/${hostName}/hm
       ];
     };
-  };
-
-  hydenix = {
-    enable = true;
-    hostname = hostName;
-    timezone = "America/Mexico_City";
-    locale = "en_US.UTF-8";
-
-    boot = {
-      enable = true;
-      useSystemdBoot = true;
-      grubTheme = "Retroboot";
-      grubExtraConfig = "";
-      kernelPackages = pkgs.linuxPackages_zen;
-    };
-
-    gaming.enable = true;
-    hardware.enable = true;
-    network.enable = true;
-    nix.enable = true;
-    sddm.enable = true;
-    system.enable = true;
   };
 
   system.stateVersion = "25.05";

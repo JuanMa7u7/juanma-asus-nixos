@@ -2,7 +2,13 @@
 {
   imports = [ ./openrgb.nix ];
 
+  boot.loader.grub.devices = [ "/dev/sda" ];
+
+  programs.zsh.enable = true;
+
   services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
 
   boot.supportedFilesystems = [ "ntfs" "exfat" ];
   security.polkit.enable = true;

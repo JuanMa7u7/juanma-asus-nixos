@@ -2,7 +2,10 @@
 {
   imports = [];
 
+  home.stateVersion = "25.05";
+
   services.blucast.enable = true;
+  services.sc0710-audio.enable = true;
 
   home.sessionVariables = {
     STEAMLIBRARY = "/mnt/juegos-ssd/SteamLibrary";
