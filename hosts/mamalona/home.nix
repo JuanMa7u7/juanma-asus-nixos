@@ -5,8 +5,6 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
-    nvidia-container-toolkit
-    nvidia-docker
   ];
 
   services.blucast.enable = true;

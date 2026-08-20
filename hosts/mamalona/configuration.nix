@@ -138,7 +138,7 @@
   '';
 
   hardware.nvidia-container-toolkit = {
-    enable = true;
+    enable = false;
   };
 
   security.sudo.extraRules = [
