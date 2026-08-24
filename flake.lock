@@ -391,6 +391,7 @@
         "nixpkgs": "nixpkgs_4",
         "sc0710": "sc0710",
         "trinity-launcher": "trinity-launcher",
+        "xodus": "xodus",
         "zen-browser": "zen-browser"
       }
     },
@@ -500,6 +501,22 @@
       "original": {
         "owner": "rasmus-kirk",
         "repo": "website-builder",
+        "type": "github"
+      }
+    },
+    "xodus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787495168,
+        "narHash": "sha256-skM7dPJEHSsDxfKWOWLUXYKm+D9OHj3tLSBv/A8PxAk=",
+        "owner": "xodus-gaming",
+        "repo": "xodus",
+        "rev": "b3d7fb210301aac66b8aaef16c0450dcfadd451c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xodus-gaming",
+        "repo": "xodus",
         "type": "github"
       }
     },
